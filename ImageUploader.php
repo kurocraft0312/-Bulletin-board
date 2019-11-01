@@ -9,6 +9,10 @@ class ImageUploader {
         // エラーチェック
         $this->_validateUpload();
         // 画像タイプチェック
+        $ext = $this->_validateImageType();
+        var_dump($ext);
+        exit;
+
         // 画像保存
         // サムネイル作成
         } catch (\Exception $e) {
@@ -18,6 +22,20 @@ class ImageUploader {
         // 画像投稿した後に再読み込みしてしまうと、画像が二重投稿されてしまう。
         header('Location: http://'.$_SERVER['HTTP_HOST']);
         exit;
+    }
+
+    private function _validateImageType() {
+        $imageType = exif_imagetype($_FILES['image']['tmp_name']);
+        switch($imageType) {
+            case IMAGETYPE_GIF:
+                return 'gif';
+            case IMAGETYPE_JPEG:
+                return 'jpg';
+            case IMAGETYPE_PNG:
+                return 'png';
+            default:
+                throw new \Exception('PNG/JPEG/GIF only!');
+        }
     }
 
     private function _validateUpload() {
@@ -37,7 +55,8 @@ class ImageUploader {
                 // ファイルが指定サイズより大きければ
                 throw new \Exception('File too large!');
             default:
-                throw new \Exception('Err: ');
+                // 何らかのエラーなら
+                throw new \Exception('Err: '.$_FILES['image']['error']);
         }
     }
 }
