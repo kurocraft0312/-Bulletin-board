@@ -40,8 +40,8 @@ class ImageUploader {
 
     private function _validateUpload() {
         // arrayが0になった
-        var_dump($_FILES);
-        exit;
+        // var_dump($_FILES);
+        // exit;
 
         if(!isset($_FILES['image']) || !isset($_FILES['image']['error'])) {
             throw new \Exception('Upload Error!');
