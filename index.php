@@ -15,6 +15,14 @@ function h($s) {
     return htmlspecialchars($s,ENT_QUOTES,'UTF-8');
 }
 
+require 'ImageUploader.php';
+
+$uploader = new \MyApp\ImageUploader();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $uploader->upload();
+}
+
 ?>
 
 <!DOCTYPE html>
