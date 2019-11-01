@@ -1,5 +1,5 @@
 <?php 
-
+// ini_setはエラーをブラウザ上に表示する処理のこと
 ini_set('display_errors',1);
 define('MAX_FILE_SIZE',1 * 1024 * 1024); /*1MB=1024KB 1は1KB換算 */
 define('THUMBNAIL_WIDTH',400);
