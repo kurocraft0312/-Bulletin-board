@@ -1,9 +1,20 @@
 <?php 
 
+ini_set('display_errors',1);
 define('MAX_FILE_SIZE',1 * 1024 * 1024); /*1MB=1024KB 1は1KB換算 */
 define('THUMBNAIL_WIDTH',400);
 define('IMAGES_DIR',__DIR__ .'/assets/img');
 define('THUMBNAIL',__DIR__ .'/assets/thumb');
+
+if(!function_exists('imagecreatetruecolor')) {
+    echo 'GD not installed';/*画像の処理に使うGDというプラグインがあるかどうかのチェック*/
+    exit;
+}
+
+function h($s) {
+    return htmlspecialchars($s,ENT_QUOTES,'UTF-8');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +30,7 @@ define('THUMBNAIL',__DIR__ .'/assets/thumb');
 <body>
     <form action="" method="post">
         <!-- 隠しコマンドでファイルのアップロードサイズを定義 -->
-        <input type="hidden" name="MAX_FILE_SIZE" value="">
+        <input type="hidden" name="MAX_FILE_SIZE" value="<?php h(MAX_FILE_SIZE); ?>">
         <input type="file" name="image">
         <input type="submit" value="upload">
     </form>
