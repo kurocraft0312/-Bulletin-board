@@ -10,8 +10,8 @@ class ImageUploader {
         $this->_validateUpload();
         // 画像タイプチェック
         $ext = $this->_validateImageType();
-        var_dump($ext);
-        exit;
+        // var_dump($ext);
+        // exit;
 
         // 画像保存
         // サムネイル作成
@@ -40,8 +40,8 @@ class ImageUploader {
 
     private function _validateUpload() {
         // arrayが0になった
-        // var_dump($_FILES);
-        // exit;
+        var_dump($_FILES);
+        exit;
 
         if(!isset($_FILES['image']) || !isset($_FILES['image']['error'])) {
             throw new \Exception('Upload Error!');
