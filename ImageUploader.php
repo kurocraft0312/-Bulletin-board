@@ -42,15 +42,16 @@ class ImageUploader {
             }
             $files[] = $file;
             if (file_exists(THUMBNAIL_DIR . '/' . $file)) {
-                $images[] = basename(THUMBNAIL_DIR) . '/' . $file;
+                $images[] = '/assets' . '/'. basename(THUMBNAIL_DIR) . '/' . $file;
             } else {
-                $images[] = basename(IMAGES_DIR) . '/' . $file;
+                $images[] = '/assets'. '/' . basename(IMAGES_DIR) . '/' . $file;
             }
         }
         array_multisort($files, SORT_DESC, $images);
         return $images;
     }
 
+    // サムネイル作成
     private function _createThumbnail($savePath) {
         $imageSize = getimagesize($savePath);
         $width = $imageSize[0];
@@ -60,6 +61,7 @@ class ImageUploader {
         }
     }
 
+    // サムネイル作成の詳細
     private function _createThumbnailMain($savePath,$width,$height) {
         switch($this->_imageType) {
             case IMAGETYPE_GIF:
