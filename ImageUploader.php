@@ -35,7 +35,7 @@ class ImageUploader {
     public function getImages() {
         $images = [];
         $files = [];
-        $imageDir = operndir(IMAGES_DIR);
+        $imageDir = opendir(IMAGES_DIR);
         while (false !== ($file = readdir($imageDir))) {
             if ($file === '.' || $file === '.') {
                 continue;
@@ -46,9 +46,9 @@ class ImageUploader {
             } else {
                 $images[] = basename(IMAGES_DIR) . '/' . $file;
             }
-            array_multisort($files, SORT_DESC,$images);
-            return $images;
         }
+        array_multisort($files, SORT_DESC,$images);
+        return $images;
     }
 
     private function _createThumbnail($savePath) {
