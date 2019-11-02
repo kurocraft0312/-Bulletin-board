@@ -37,7 +37,7 @@ class ImageUploader {
         $files = [];
         $imageDir = opendir(IMAGES_DIR);
         while (false !== ($file = readdir($imageDir))) {
-            if ($file === '.' || $file === '.') {
+            if ($file === '.' || $file === '..') {
                 continue;
             }
             $files[] = $file;
@@ -47,7 +47,7 @@ class ImageUploader {
                 $images[] = basename(IMAGES_DIR) . '/' . $file;
             }
         }
-        array_multisort($files, SORT_DESC,$images);
+        array_multisort($files, SORT_DESC, $images);
         return $images;
     }
 
