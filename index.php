@@ -3,8 +3,8 @@
 ini_set('display_errors',1);
 define('MAX_FILE_SIZE',1 * 1024 * 1024); /*1MB=1024KB 1は1KB換算 */
 define('THUMBNAIL_WIDTH',400);
-define('IMAGES_DIR',__DIR__ .'/assets/img');
-define('THUMBNAIL_DIR',__DIR__ .'/assets/thumb');
+define('IMAGES_DIR',__DIR__ .'/assets/images');
+define('THUMBNAIL_DIR',__DIR__ .'/assets/thumbs');
 
 if(!function_exists('imagecreatetruecolor')) {
     echo 'GD not installed';/*画像の処理に使うGDというプラグインがあるかどうかのチェック*/
@@ -49,7 +49,7 @@ $images = $uploader->getImages();
         <?php foreach ($images as $image) : ?>
         <li>
             <a href="<?php echo h(basename(IMAGES_DIR)) . '/' . basename($image); ?>">
-                <img src="<?php echo h($image); ?>" alt="">
+                <img src="<?php echo h($image); ?>">
             </a>
         </li>
         <?php endforeach; ?>
