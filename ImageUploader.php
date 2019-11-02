@@ -12,6 +12,7 @@ class ImageUploader {
         try {
         // エラーチェック
         $this->_validateUpload();
+
         // 画像タイプチェック
         $ext = $this->_validateImageType();
         // var_dump($ext);
@@ -67,6 +68,7 @@ class ImageUploader {
                 imagepng($thumbImage, THUMBNAIL_DIR . '/' . $this->_imageFileName);
                 break;
         }
+
     }
 
     private function _save($ext) {
@@ -99,7 +101,6 @@ class ImageUploader {
     }
 
     private function _validateUpload() {
-        // arrayが0になった
         // var_dump($_FILES);
         // exit;
 
