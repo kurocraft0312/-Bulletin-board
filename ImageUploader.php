@@ -90,6 +90,7 @@ class ImageUploader {
 
     }
 
+    // 画像の保存を観測する
     private function _save($ext) {
         $this->_imageFileName = sprintf(
             '%s_%s.%s',
@@ -105,6 +106,7 @@ class ImageUploader {
         return $savePath;
     }
 
+    // バリデーションで画像の拡張子エラーを観測する
     private function _validateImageType() {
         $this->_imageType = exif_imagetype($_FILES['image']['tmp_name']);
         switch($this->_imageType) {
@@ -119,6 +121,7 @@ class ImageUploader {
         }
     }
 
+    // バリデーションで画像アップロードのエラーを観測する
     private function _validateUpload() {
         // var_dump($_FILES);
         // exit;
