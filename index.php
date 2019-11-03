@@ -41,12 +41,15 @@ $images = $uploader->getImages();
     <title>Bulletin-board</title>
 </head>
 <body>
-    <form action="" method="post" enctype="multipart/form-data">
+
+<div class="btn">
+    Upload!
+    <form action="" method="post" enctype="multipart/form-data" id="my_form">
         <!-- 隠しコマンドでファイルのアップロードサイズを定義 -->
         <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo h(MAX_FILE_SIZE); ?>">
-        <input type="file" name="image">
-        <input type="submit" value="upload">
+        <input type="file" name="image" id="my_file">
     </form>
+</div>
 
     <?php if(isset($success)) : ?>
         <div class="msg success"><?php echo h($success); ?></div>
@@ -59,7 +62,7 @@ $images = $uploader->getImages();
         <?php foreach ($images as $image) : ?>
         <li>
             <a href="<?php echo '/assets' . '/' . h(basename(IMAGES_DIR)) . '/' . basename($image); ?>">
-                <img src="<?php echo '/assets' . '/' . h($image); ?>">
+                <img src="<?php echo '/assets' . '/' . h(basename($image)); ?>">
             </a>
         </li>
         <?php endforeach; ?>

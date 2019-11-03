@@ -42,7 +42,7 @@ class ImageUploader {
             unset($_SESSION['success']);
         }
         if (isset($_SESSION['error'])) {
-            $success = $_SESSION['error'];
+            $error = $_SESSION['error'];
             unset($_SESSION['error']);
         }
         return [$success, $error];
