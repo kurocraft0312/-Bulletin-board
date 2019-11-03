@@ -1,4 +1,5 @@
 <?php 
+session_start();
 // ini_setはエラーをブラウザ上に表示する処理のこと
 ini_set('display_errors',1);
 define('MAX_FILE_SIZE',1 * 1024 * 1024); /*1MB=1024KB 1は1KB換算 */
@@ -23,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uploader->upload();
 }
 
+list($success, $error) = $uploader->getResults();
+
 $images = $uploader->getImages();
 
 ?>
@@ -45,6 +48,13 @@ $images = $uploader->getImages();
         <input type="submit" value="upload">
     </form>
 
+    <?php if(isset($sucess)) : ?>
+        <div class="msg success"><?php echo h($success); ?></div>
+    <?php endif; ?>
+    <?php if(isset($error)) : ?>
+        <div class="msg error"><?php echo h($error); ?></div>
+    <?php endif; ?>
+
     <ul>
         <?php foreach ($images as $image) : ?>
         <li>
@@ -54,5 +64,7 @@ $images = $uploader->getImages();
         </li>
         <?php endforeach; ?>
     </ul>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="assets/js/index.js"></script>
 </body>
 </html>

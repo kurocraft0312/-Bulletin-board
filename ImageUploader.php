@@ -23,13 +23,29 @@ class ImageUploader {
         // サムネイル作成
         $this->_createThumbnail($savePath);
 
+        $_SESSION['success'] = 'Upload Done!';
+
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            exit;
+            $_SESSION['error'] = $e->getMessage();
+            // exit;
         }
         // 画像投稿した後に再読み込みしてしまうと、画像が二重投稿されてしまう。
         header('Location: http://'.$_SERVER['HTTP_HOST']);
         exit;
+    }
+
+    public function getResults() {
+        $success = null;
+        $error = null;
+        if (isset($_SESSION['success'])) {
+            $success = $_SESSION['success'];
+            unset($_SESSION['success']);
+        }
+        if (isset($_SESSION['error'])) {
+            $success = $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
+        return [$success, $error];
     }
 
     public function getImages() {
