@@ -32,6 +32,7 @@ class ImageUploader {
         exit;
     }
 
+    
     public function getImages() {
         $images = [];
         $files = [];
@@ -41,17 +42,18 @@ class ImageUploader {
                 continue;
             }
             $files[] = $file;
+            // <img>タグ部分
             if (file_exists(THUMBNAIL_DIR . '/' . $file)) {
-                $images[] = '/assets' . '/'. basename(THUMBNAIL_DIR) . '/' . $file;
+                $images[] = basename(THUMBNAIL_DIR) . '/' . $file;
             } else {
-                $images[] = '/assets'. '/' . basename(IMAGES_DIR) . '/' . $file;
+                $images[] = basename(IMAGES_DIR) . '/' . $file;
             }
         }
         array_multisort($files, SORT_DESC, $images);
         return $images;
     }
 
-    // サムネイル作成
+    // サムネイル作成(幅と高さの調整)
     private function _createThumbnail($savePath) {
         $imageSize = getimagesize($savePath);
         $width = $imageSize[0];
@@ -89,7 +91,6 @@ class ImageUploader {
                 imagepng($thumbImage, THUMBNAIL_DIR . '/' . $this->_imageFileName);
                 break;
         }
-
     }
 
     // 画像の保存を観測する

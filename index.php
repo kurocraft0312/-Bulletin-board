@@ -48,8 +48,8 @@ $images = $uploader->getImages();
     <ul>
         <?php foreach ($images as $image) : ?>
         <li>
-            <a href="<?php echo h(basename(IMAGES_DIR)) . '/' . basename($image); ?>">
-                <img src="<?php echo h($image); ?>">
+            <a href="<?php echo '/assets' . '/' . h(basename(IMAGES_DIR)) . '/' . basename($image); ?>">
+                <img src="<?php echo '/assets' . '/' . h($image); ?>">
             </a>
         </li>
         <?php endforeach; ?>
