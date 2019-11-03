@@ -32,7 +32,6 @@ class ImageUploader {
         exit;
     }
 
-    
     public function getImages() {
         $images = [];
         $files = [];
