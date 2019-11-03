@@ -1,4 +1,5 @@
 <?php 
+
 session_start();
 // ini_setはエラーをブラウザ上に表示する処理のこと
 ini_set('display_errors',1);
@@ -29,7 +30,6 @@ list($success, $error) = $uploader->getResults();
 $images = $uploader->getImages();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -48,7 +48,7 @@ $images = $uploader->getImages();
         <input type="submit" value="upload">
     </form>
 
-    <?php if(isset($sucess)) : ?>
+    <?php if(isset($success)) : ?>
         <div class="msg success"><?php echo h($success); ?></div>
     <?php endif; ?>
     <?php if(isset($error)) : ?>
